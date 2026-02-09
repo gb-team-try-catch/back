@@ -1,7 +1,7 @@
 package com.app.trycatch.domain.skilllog;
 
 import com.app.trycatch.audit.Period;
-import com.app.trycatch.common.enumeration.SkillLogStatus;
+import com.app.trycatch.common.enumeration.skillLog.SkillLogStatus;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

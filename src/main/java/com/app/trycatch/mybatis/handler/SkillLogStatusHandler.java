@@ -1,6 +1,6 @@
 package com.app.trycatch.mybatis.handler;
 
-import com.app.trycatch.common.enumeration.SkillLogStatus;
+import com.app.trycatch.common.enumeration.skillLog.SkillLogStatus;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
 import org.apache.ibatis.type.TypeHandler;

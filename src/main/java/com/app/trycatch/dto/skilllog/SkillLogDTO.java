@@ -1,6 +1,6 @@
 package com.app.trycatch.dto.skilllog;
 
-import com.app.trycatch.common.enumeration.SkillLogStatus;
+import com.app.trycatch.common.enumeration.skillLog.SkillLogStatus;
 import com.app.trycatch.domain.skilllog.SkillLogVO;
 import lombok.*;
 
@@ -9,7 +9,6 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 public class SkillLogDTO {
     private Long id;
-    private Long memberId;
     private Long experienceProgramId;
     private String skillLogTitle;
     private String skillLogContent;
@@ -18,6 +17,9 @@ public class SkillLogDTO {
     private SkillLogStatus skillLogStatus;
     private String createdDatetime;
     private String updatedDatetime;
+
+    private Long memberId;
+
 
     public SkillLogVO toVO() {
         return SkillLogVO.builder()

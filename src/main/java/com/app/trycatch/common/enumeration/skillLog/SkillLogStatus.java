@@ -1,4 +1,4 @@
-package com.app.trycatch.common.enumeration;
+package com.app.trycatch.common.enumeration.skillLog;
 
 import java.util.Arrays;
 import java.util.Map;
