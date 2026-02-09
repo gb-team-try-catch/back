@@ -24,13 +24,13 @@ public class IndividualMemberTests {
     public void testInsert(){
         IndividualMemberDTO individualMemberDTO = new IndividualMemberDTO();
         log.info("{}............",individualMemberDTO);
-        individualMemberDTO.setMemberId("test");
-        individualMemberDTO.setMemberPassword("1234");
-        individualMemberDTO.setMemberBirth("1999-12-18");
+        individualMemberDTO.setMemberId("test22");
+        individualMemberDTO.setMemberPassword("12344");
+        individualMemberDTO.setMemberBirth("2000-02-02");
         individualMemberDTO.setMemberGender(Gender.Man);
-        individualMemberDTO.setMemberName("김윤찬");
-        individualMemberDTO.setMemberEmail("test@gmail.com");
-        individualMemberDTO.setMemberPhone("010-1234-1234");
+        individualMemberDTO.setMemberName("김태형");
+        individualMemberDTO.setMemberEmail("test12@gmail.com");
+        individualMemberDTO.setMemberPhone("010-2555-3434");
         individualMemberDTO.setMemberAgreePrivacy(true);
         individualMemberDTO.setMemberAgreeMarketing(true);
         MemberVO memberVO = individualMemberDTO.toMemberVO();
