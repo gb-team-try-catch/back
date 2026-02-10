@@ -8,6 +8,6 @@ create table tbl_qna_job_category_small
     constraint fk_qna_job_category_small foreign key (job_category_parent_id) references tbl_qna_job_category (id)
 );
 
-set FOREIGN_KEY_CHECKS = 0;
+set FOREIGN_KEY_CHECKS = 1;
 
 drop table tbl_qna_job_category_small;
