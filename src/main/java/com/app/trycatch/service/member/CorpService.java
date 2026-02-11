@@ -41,10 +41,11 @@ public class CorpService {
         memberDAO.saveCorp(memberVO);
 
         corpMemberDTO.setId(memberVO.getId());
-
         corpMemberDAO.save(corpMemberDTO.toCorpVO());
 
         AddressVO addressVO = corpMemberDTO.toAddressVO();
         addressDAO.save(addressVO);
+
+        memberDAO.updateAddressIdById(memberVO.getId());
     }
 }

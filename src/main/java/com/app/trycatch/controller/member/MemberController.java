@@ -1,5 +1,6 @@
 package com.app.trycatch.controller.member;
 
+import com.app.trycatch.dto.member.CorpMemberDTO;
 import com.app.trycatch.dto.member.IndividualMemberDTO;
 import com.app.trycatch.dto.member.MemberDTO;
 import com.app.trycatch.service.member.CorpService;
@@ -29,16 +30,25 @@ public class MemberController {
         return "main/individual-join";
     }
 
+    @GetMapping("company-join")
+    public String goCompanyJoinForm(){
+        return "main/company-join";
+    }
 
     @PostMapping("individual-join")
     public RedirectView individualJoin(IndividualMemberDTO individualMemberDTO){
         individualMemberService.joinIndividual(individualMemberDTO);
         return new RedirectView("/main/log-in");
     }
-
+    @PostMapping("company-join")
+    public RedirectView companyJoin(CorpMemberDTO  corpMemberDTO){
+        corpService.joinCorp(corpMemberDTO);
+        return  new RedirectView("/main/log-in");
+    }
     @GetMapping("log-in")
     public String goLoginForm(){
         return "main/log-in";
     }
+
 
 }

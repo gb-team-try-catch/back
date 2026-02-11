@@ -1,5 +1,6 @@
 package com.app.trycatch.domain.member;
 
+import com.app.trycatch.common.enumeration.member.Gender;
 import lombok.*;
 
 @Getter
@@ -11,6 +12,7 @@ import lombok.*;
 public class IndividualMemberVO {
     private Long id;
     private String individualMemberBirth;
+    private Gender individualMemberGender;
     private String individualMemberEducation;
     private int individualMemberPoint;
     private int individualMemberLevel;

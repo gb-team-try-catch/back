@@ -18,6 +18,10 @@ create table tbl_corp
     constraint fk_corp_member foreign key (id) references tbl_member (id)
 ) comment '매니저 && 기업';
 
+
+set FOREIGN_KEY_CHECKS = 1;
+drop table tbl_corp;
+
 select * from tbl_corp;
 select * from tbl_address;
 

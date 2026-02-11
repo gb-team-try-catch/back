@@ -21,4 +21,5 @@ public class CorpMemberDAO {
     public Optional<CorpVO> findByCorpCompanyName(String corpCompanyName) {
         return corpMemberMapper.selectByCorpCompanyName(corpCompanyName);
     }
+
 }

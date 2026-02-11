@@ -37,4 +37,9 @@ public class MemberDAO {
     public void saveOauth(OAuthVO oAuthVO) {
         memberMapper.insertOauth(oAuthVO);
     }
+
+    // 주소 id 추가
+    public void updateAddressIdById(Long id) {
+        memberMapper.updateAddressIdById(id);
+    }
 }

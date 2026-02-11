@@ -16,7 +16,6 @@ public class CorpMemberDTO {
     private Long id;
     private String memberId;
     private String memberPassword;
-    private Gender memberGender;
     private String memberName;
     private String memberEmail;
     private String memberPhone;
@@ -51,7 +50,6 @@ public class CorpMemberDTO {
                 .id(id)
                 .memberId(memberId)
                 .memberPassword(memberPassword)
-                .memberGender(memberGender)
                 .memberName(memberName)
                 .memberEmail(memberEmail)
                 .memberPhone(memberPhone)

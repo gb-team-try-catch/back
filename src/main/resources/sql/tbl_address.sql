@@ -11,6 +11,6 @@ create table tbl_address
     constraint fk_address_corp foreign key (id) references tbl_corp (id)
 ) comment '주소';
 
-
+select * from tbl_address;
 drop table  tbl_address;
 set FOREIGN_KEY_CHECKS = 1;

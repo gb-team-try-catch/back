@@ -57,7 +57,6 @@ public class QnaCommentLikesDTO {
                 .id(id)
                 .memberId(memberId)
                 .memberPassword(memberPassword)
-                .memberGender(memberGender)
                 .memberName(memberName)
                 .memberEmail(memberEmail)
                 .memberPhone(memberPhone)

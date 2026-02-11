@@ -14,6 +14,7 @@ public interface MemberMapper {
 
     //    아이디 검사
     Optional<MemberVO> selectByMemberId(String memberId);
+
     //    이메일 검사
     Optional<MemberVO> selectByMemberEmail(String memberEmail);
 
@@ -25,4 +26,7 @@ public interface MemberMapper {
 
     //      기업 회원 가입
     public void insertCorp(MemberVO memberVO);
+
+    //      주소 id 추가
+    public void updateAddressIdById(Long id);
 }

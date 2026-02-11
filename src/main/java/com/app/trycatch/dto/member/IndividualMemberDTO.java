@@ -1,5 +1,6 @@
 package com.app.trycatch.dto.member;
 
+
 import com.app.trycatch.common.enumeration.member.Gender;
 import com.app.trycatch.common.enumeration.member.Provider;
 import com.app.trycatch.common.enumeration.member.Status;
@@ -17,6 +18,7 @@ import lombok.*;
 public class IndividualMemberDTO {
     private Long id;
     private String individualMemberBirth;
+    private Gender individualMemberGender;
     private String individualMemberEducation;
     private int individualMemberPoint;
     private int individualMemberLevel;
@@ -24,7 +26,6 @@ public class IndividualMemberDTO {
     private int individualMemberQuestionCount;
     private String memberId;
     private String memberPassword;
-    private Gender memberGender;
     private String memberName;
     private String memberEmail;
     private String memberPhone;
@@ -46,7 +47,6 @@ public class IndividualMemberDTO {
                 .id(id)
                 .memberId(memberId)
                 .memberPassword(memberPassword)
-                .memberGender(memberGender)
                 .memberName(memberName)
                 .memberEmail(memberEmail)
                 .memberPhone(memberPhone)
@@ -63,6 +63,7 @@ public class IndividualMemberDTO {
         return IndividualMemberVO.builder()
                 .id(id)
                 .individualMemberBirth(individualMemberBirth)
+                .individualMemberGender(individualMemberGender)
                 .individualMemberEducation(individualMemberEducation)
                 .individualMemberPoint(individualMemberPoint)
                 .individualMemberLevel(individualMemberLevel)
