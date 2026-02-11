@@ -1,34 +1,39 @@
 package com.app.trycatch.controller.member;
 
-import com.app.threetier.dto.MemberDTO;
-import com.app.threetier.service.member.MemberService;
-import jakarta.servlet.http.Cookie;
+
+import com.app.trycatch.dto.member.MemberDTO;
+import com.app.trycatch.service.member.CorpService;
+import com.app.trycatch.service.member.IndividualMemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
-@RequestMapping("/member/**")
+@RequestMapping("/main/**")
 @RequiredArgsConstructor
 public class MemberController {
-    private final MemberService memberService;
+    private final IndividualMemberService individualMemberService;
+    private final CorpService corpService;
 //    session: 서버에 저장(공용)
     private final HttpSession session;
 
-    @GetMapping("check-email")
-    @ResponseBody
-    public boolean checkEmail(String memberEmail){
-        return memberService.checkEmail(memberEmail);
-    }
+//    @GetMapping("check-email")
+//    @ResponseBody
+//    public boolean checkEmail(String memberEmail){
+//        return IndividualMemberService.checkEmail(memberEmail);
+//    }
 
     @GetMapping("join")
     public String goToJoinForm(){
-        return "member/join";
+        return "main/individual-join";
     }
 
     @GetMapping("kakao/join")
