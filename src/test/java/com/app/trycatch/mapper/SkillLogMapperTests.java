@@ -1,6 +1,7 @@
 package com.app.trycatch.mapper;
 
 import com.app.trycatch.domain.skilllog.SkillLogVO;
+import com.app.trycatch.dto.skilllog.SkillLogAsideDTO;
 import com.app.trycatch.dto.skilllog.SkillLogDTO;
 import com.app.trycatch.mapper.skilllog.SkillLogMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,11 @@ public class SkillLogMapperTests {
         skillLogMapper.insert(skillLogDTO);
 
         log.info("{}................", skillLogDTO.getId());
+    }
 
+    @Test
+    public void testSelectCountByMemberId() {
+        SkillLogAsideDTO skillLogAsideDTO = skillLogMapper.selectCountByMemberId(5L);
+        log.info("{}.....................", skillLogAsideDTO);
     }
 }

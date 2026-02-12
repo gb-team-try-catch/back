@@ -185,6 +185,7 @@ const textarea = document.querySelector(".addFileAndLink");
 const addPicture = document.querySelector(".icon-photo.qnaSpB.btn-layer-open");
 // 숨겨진 파일 input
 const photoInput = document.getElementById("photoInput");
+let tempPhotoInputs = [];
 
 // 버튼 클릭 → 숨겨진 input 클릭
 addPicture.addEventListener("click", () => {
@@ -197,10 +198,23 @@ photoInput.addEventListener("change", (e) => {
     if (files.length <= 0) return;
     if (files.length > 10) return alert("최대 10개의 파일만 올릴 수 있습니다.");
 
+    // 등록했던 파일들 삭제
+    addFileAndLink.querySelectorAll(".attach-image").forEach((image) => {
+        image.remove();
+        tempPhotoInputs = [];
+    })
+
     files.forEach((file, i) => {
         // 이미지 파일인지 확인
         if (!file.type.startsWith("image/")) {
             alert("이미지 파일만 올릴 수 있습니다.");
+            photoInput.value = "";
+            return;
+        }
+        // 파일 용량 확인
+        if (file.size / 1024 / 1024 > 5) {
+            alert('파일 용량이 너무 큽니다. (5MB 이하만 가능)');
+            photoInput.value = "";
             return;
         }
 
@@ -221,6 +235,8 @@ photoInput.addEventListener("change", (e) => {
         `;
         });
 
+        tempPhotoInputs.push({id: i, file: file});
+
         console.log(file);
     })
 });
@@ -228,20 +244,14 @@ photoInput.addEventListener("change", (e) => {
 // 이미지 삭제 (이벤트 위임)
 textarea.addEventListener("click", (e) => {
     if (e.target.classList.contains("remove-button")) {
-        console.log(e.target);
-
-        let files = photoInput.files;
-        const targetIndex = Number(e.target.classList[2]);
+        const targetIndex = e.target.classList[2];
         const dataTransfer = new DataTransfer();
 
-        files = files.filter((_, index) => index !== targetIndex);
-        files.forEach((file) => dataTransfer.items.add(file));
-        console.log(files);
-
+        tempPhotoInputs = tempPhotoInputs.filter(({id}) => String(id) !== targetIndex);
+        tempPhotoInputs.forEach(({file}) => dataTransfer.items.add(file));
         photoInput.files = dataTransfer.files;
-        e.target.closest(".attach-wrap").remove();
 
-        console.log(photoInput.files)
+        e.target.closest(".attach-wrap").remove();
     }
 });
 

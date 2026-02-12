@@ -5,6 +5,15 @@
         insert into tbl_skill_log(member_id, experience_program_id, skill_log_title, skill_log_content)
         values(#{memberId}, #{experienceProgramId}, #{skillLogTitle}, #{skillLogContent})
     </insert>
+
+    <select id="selectCountByMemberId" resultType="SKillLogAsideDTO">
+        select m.id, m.member_name, im.individual_member_level, count(s.id) as skill_log_count
+        from tbl_member m join tbl_individual_member im
+        on m.id = im.id
+        left join tbl_skill_log s
+        on m.id = s.member_id
+        where m.id = #{id}
+    </select>
 </mapper>
 
 

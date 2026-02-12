@@ -49,4 +49,9 @@ public class SkillLogServiceTests {
 
         skillLogService.write(skillLogDTO, multipartFiles);
     }
+
+    @Test
+    public void testAside() {
+        log.info("{}", skillLogService.aside(5L));
+    }
 }

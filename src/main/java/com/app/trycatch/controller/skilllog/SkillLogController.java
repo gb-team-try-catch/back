@@ -2,9 +2,11 @@ package com.app.trycatch.controller.skilllog;
 
 import com.app.trycatch.dto.skilllog.SkillLogDTO;
 import com.app.trycatch.service.skilllog.SkillLogService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,16 +22,19 @@ import java.util.ArrayList;
 @Slf4j
 public class SkillLogController {
     private final SkillLogService skillLogService;
+    private final HttpSession session;
 
     @GetMapping("write")
-    public String goToWrite(SkillLogDTO skillLogDTO){
+    public String goToWrite(Long memberId, Model model){
+//        int memberId = session.getAttribute("member");
+        model.addAttribute("aside", skillLogService.aside(memberId));
         return "skill-log/write";
     }
 
     @PostMapping("write")
     public RedirectView write(SkillLogDTO skillLogDTO,
                       @RequestParam("file") ArrayList<MultipartFile> multipartFiles ) {
-        skillLogDTO.setMemberId(2L);
+        skillLogDTO.setMemberId(4L);
         skillLogService.write(skillLogDTO, multipartFiles);
         return new RedirectView("/skill-log/list");
     }

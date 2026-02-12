@@ -4,6 +4,7 @@ import com.app.trycatch.common.enumeration.file.FileContentType;
 import com.app.trycatch.domain.skilllog.SkillLogVO;
 import com.app.trycatch.domain.skilllog.TagVO;
 import com.app.trycatch.dto.file.FileDTO;
+import com.app.trycatch.dto.skilllog.SkillLogAsideDTO;
 import com.app.trycatch.dto.skilllog.SkillLogDTO;
 import com.app.trycatch.dto.skilllog.SkillLogFileDTO;
 import com.app.trycatch.dto.skilllog.TagDTO;
@@ -77,6 +78,9 @@ public class SkillLogService {
         });
     }
 
+    public SkillLogAsideDTO aside(Long id) {
+        return skillLogDAO.findCountByMemberId(id);
+    }
 
     public String getTodayPath(){
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
