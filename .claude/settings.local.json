@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew compileJava:*)",
+      "Bash(./gradlew clean:*)",
+      "Bash(timeout:*)",
+      "Bash(findstr:*)",
+      "Bash(javap:*)"
+    ]
+  }
+}

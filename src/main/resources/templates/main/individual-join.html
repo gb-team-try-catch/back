@@ -12,7 +12,7 @@
                 <h1>
                     <a href=""
                         ><img
-                            src="../../static/images/logo.png"
+                            src="/images/logo.png"
                             alt=""
                     /></a>
                 </h1>
@@ -115,12 +115,9 @@
                             <div class="list-social">
                                 <ul>
                                     <li>
-                                        <a
-                                            href="javascript:;"
-                                            id="btnKaLogin"
-                                            class="kakao"
-                                            >카카오 로그인</a
-                                        >
+                                        <button type="button" class="kakao">
+                                            카카오 로그인
+                                        </button>
                                     </li>
                                 </ul>
                             </div>
@@ -266,14 +263,14 @@
                                         <input
                                             type="radio"
                                             id="boy"
-                                            name="memberGender"
+                                            name="individualMemberGender"
                                             value="man"
                                             class="dev-gender"
                                         /><label for="boy">남자</label>
                                         <input
                                             type="radio"
                                             id="girl"
-                                            name="memberGender"
+                                            name="individualMemberGender"
                                             value="women"
                                             class="dev-gender"
                                         /><label for="girl">여자</label>
@@ -514,20 +511,4 @@
         </div>
     </body>
     <script src="/js/main/join/individual-join-event.js"></script>
-    <script
-        src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js"
-        integrity="sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1"
-        crossorigin="anonymous"
-    ></script>
-    <script>
-        // 카카오 SDK 초기화 (JavaScript 키 사용)
-        Kakao.init("4fbe7db4268bd8e66a1f8645394e6280");
-
-        document.querySelector(".kakao").addEventListener("click", () => {
-            Kakao.Auth.authorize({
-                redirectUri: "http://127.0.0.1:3000/templates/main/individual-join.html",
-                scope: "profile_nickname, profile_image", // 필요한 동의항목
-            });
-        });
-    </script>
 </html>

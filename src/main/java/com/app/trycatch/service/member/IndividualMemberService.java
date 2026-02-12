@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
@@ -34,10 +36,26 @@ public class IndividualMemberService {
         memberDAO.save(memberVO);
 
         individualMemberDTO.setId(memberVO.getId());
+        individualMemberDTO.setProvider(Provider.TRYCATCH);
 
-        if (individualMemberDTO.getProvider() == null) {
-            individualMemberDTO.setProvider(Provider.TRYCATCH);
+        memberDAO.saveOauth(individualMemberDTO.toOAuthVO());
+        individualMemberDAO.save(individualMemberDTO.toIndividualMemberVO());
+    }
+
+    //        카카오 개인 회원가입
+    public void kakaoJoin(IndividualMemberDTO individualMemberDTO) {
+        if (individualMemberDTO.getMemberId() == null || individualMemberDTO.getMemberId().isEmpty()) {
+            individualMemberDTO.setMemberId(UUID.randomUUID().toString().substring(0, 16));
         }
+        if (individualMemberDTO.getMemberPassword() == null || individualMemberDTO.getMemberPassword().isEmpty()) {
+            individualMemberDTO.setMemberPassword(UUID.randomUUID().toString());
+        }
+
+        MemberVO memberVO = individualMemberDTO.toMemberVO();
+        memberDAO.save(memberVO);
+
+        individualMemberDTO.setId(memberVO.getId());
+        individualMemberDTO.setProvider(Provider.KAKAO);
 
         memberDAO.saveOauth(individualMemberDTO.toOAuthVO());
         individualMemberDAO.save(individualMemberDTO.toIndividualMemberVO());
