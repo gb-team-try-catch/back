@@ -41,6 +41,7 @@ public class IndividualMemberDTO {
     private String createdDatetime;
     private String updatedDatetime;
     private Provider provider;
+    private String profileImageUrl;
 
     public MemberVO toMemberVO() {
         return MemberVO.builder()

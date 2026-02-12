@@ -1,42 +1,8 @@
-// 비밀번호 도움말 버튼
-const btnHelp = document.querySelector(".btnHelp");
-const passwordHelp = document.querySelector(".row.mbr_passwd");
-const passwordHelpChat = document.querySelector(".lyHelp");
-
-btnHelp.addEventListener("click", (e) => {
-    passwordHelp.style.zIndex =
-        passwordHelp.style.zIndex === "9100" ? "auto" : "9100";
-    passwordHelpChat.style.display =
-        passwordHelpChat.style.display === "none" ? "block" : "none";
-});
-
-// 비밀번호 표시
-const showPasswordButton = document.querySelector(
-    ".mbrBtnAuth.dev-password-dp",
-);
-const showPassword = document.getElementById("M_Pwd");
-
-showPasswordButton.addEventListener("click", (e) => {
-    showPassword.type = showPassword.type === "password" ? "text" : "password";
-    showPasswordButton.classList.toggle("selected");
-});
-
+// ==========================================
 // 입력정보 경고
+// ★ 아이디(idcheck), 비밀번호(M_Pwd), 인증번호(Certify_Num) 제거
+// ==========================================
 const fields = [
-    {
-        input: "idcheck",
-        selector: ".mbr_id",
-        notice: "notice_msg_id",
-        regexp: /^[a-z0-9]{4,16}$/,
-        errorMsg: "4~16자의 영문 소문자, 숫자만 사용 가능합니다.",
-    },
-    {
-        input: "M_Pwd",
-        selector: ".mbr_passwd",
-        notice: "notice_msg_pwd",
-        regexp: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,16}$/,
-        errorMsg: "8~16자의 영문, 숫자, 특수문자를 모두 포함해야 합니다.",
-    },
     {
         input: "M_Name",
         selector: ".mbr_name",
@@ -57,6 +23,7 @@ const fields = [
         notice: "notice_msg_mail",
         regexp: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         errorMsg: "올바른 이메일 형식을 입력해주세요.",
+        skip: true,
     },
     {
         input: "M_Phone",
@@ -64,18 +31,12 @@ const fields = [
         notice: "notice_msg_phone",
         regexp: /^01[016789]-?\d{3,4}-?\d{4}$/,
         errorMsg: "올바른 휴대폰 번호를 입력해주세요.",
-    },
-    {
-        input: "Certify_Num",
-        selector: ".authentication_check",
-        notice: "notice_msg_certify",
-        regexp: /^\d{6}$/,
-        errorMsg: "인증번호 6자리를 입력해주세요.",
-        skip: true,
-    },
+    }
 ];
 
+// ==========================================
 // 포커스 / 블러 이벤트
+// ==========================================
 fields.forEach(({ input, selector, notice, regexp, errorMsg, skip }) => {
     const inputEl = document.getElementById(input);
     const col1 = document.querySelector(`${selector} .col_1`);
@@ -120,7 +81,9 @@ fields.forEach(({ input, selector, notice, regexp, errorMsg, skip }) => {
     });
 });
 
+// ==========================================
 // 가입하기 버튼
+// ==========================================
 const mbrBtnRegist = document.querySelector(".mbrBtnRegist");
 
 mbrBtnRegist.addEventListener("click", (e) => {
@@ -128,7 +91,7 @@ mbrBtnRegist.addEventListener("click", (e) => {
 
     let isValid = true;
 
-    // 입력 필드 검증 (인증번호 제외)
+    // 입력 필드 검증
     fields.forEach(({ input, notice, regexp, errorMsg, skip }) => {
         if (skip) return;
 
@@ -185,9 +148,9 @@ mbrBtnRegist.addEventListener("click", (e) => {
     }
 });
 
-
-
+// ==========================================
 // 체크박스 (input 요소에 이벤트 걸기)
+// ==========================================
 const inputChkAll = document.getElementById("lb_chk_all");
 const inputChkAge = document.getElementById("lb_chk_age");
 const inputChkPrivacy = document.getElementById("lb_chk_privacyOptional");
@@ -225,16 +188,17 @@ checkBoxInputs.forEach((input, idx) => {
     });
 });
 
+// ==========================================
 // 내용보기 클릭
+// ==========================================
 const mbrBtnPolicies = document.querySelectorAll(".mbrBtnPolicy");
 
 mbrBtnPolicies.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-        e.preventDefault(); // 링크 기본 동작 방지
+        e.preventDefault();
 
         btn.classList.toggle("on");
 
-        // 버튼의 부모 요소에서 해당하는 policyTplBox 찾기
         const policyTplBox = btn.closest(".row").querySelector(".policyTplBox");
 
         if (policyTplBox) {
@@ -244,7 +208,9 @@ mbrBtnPolicies.forEach((btn) => {
     });
 });
 
+// ==========================================
 // 성별 체크시 문자 제거
+// ==========================================
 const boy = document.getElementById("boy");
 const girl = document.getElementById("girl");
 const noticeMsgGender = document.getElementById("notice_msg_gender");
@@ -258,7 +224,22 @@ gender.forEach((gender) => {
     });
 });
 
-const kakaoJoinButton = document.querySelector(".kakao");
-kakaoJoinButton.addEventListener("click", (e) =>{
-    location.href = "https://kauth.kakao.com/oauth/authorize?client_id=edeefdf5ab96d36811571fbd1e56a4cf&redirect_uri=http://localhost:10000/main/kakao-join&response_type=code";
+// ==========================================
+// 카카오에서 pre-fill된 필드에 focus 스타일 적용
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const emailInput = document.getElementById("M_Email");
+    if (emailInput && emailInput.value) {
+        const col1 = document.querySelector(".mbr_email .col_1");
+        const col2 = document.querySelector(".mbr_email .col_2");
+        if (col1) col1.classList.add("focus");
+        if (col2) col2.classList.add("focus");
+    }
+    const nameInput = document.getElementById("M_Name");
+    if (nameInput && nameInput.value) {
+        const col1 = document.querySelector(".mbr_name .col_1");
+        const col2 = document.querySelector(".mbr_name .col_2");
+        if (col1) col1.classList.add("focus");
+        if (col2) col2.classList.add("focus");
+    }
 });
