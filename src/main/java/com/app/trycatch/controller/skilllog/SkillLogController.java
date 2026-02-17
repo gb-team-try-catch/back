@@ -1,5 +1,7 @@
 package com.app.trycatch.controller.skilllog;
 
+import com.app.trycatch.dto.member.IndividualMemberDTO;
+import com.app.trycatch.dto.member.MemberDTO;
 import com.app.trycatch.dto.skilllog.SkillLogDTO;
 import com.app.trycatch.service.skilllog.SkillLogService;
 import jakarta.servlet.http.HttpSession;
@@ -25,8 +27,16 @@ public class SkillLogController {
     private final HttpSession session;
 
     @GetMapping("write")
-    public String goToWrite(Long memberId, Model model){
-//        int memberId = session.getAttribute("member");
+    public String goToWrite(Model model){
+        Object member = session.getAttribute("member");
+        Long memberId = null;
+
+        if(member instanceof IndividualMemberDTO) {
+            memberId = ((IndividualMemberDTO) member).getId();
+        } else {
+            memberId = ((MemberDTO) member).getId();
+        }
+
         model.addAttribute("aside", skillLogService.aside(memberId));
         return "skill-log/write";
     }

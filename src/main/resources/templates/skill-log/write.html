@@ -139,8 +139,8 @@
                         <div class="writeBoxWrap">
                             <form action="/skill-log/write" method="post" name="skil-log-write-form" enctype="multipart/form-data">
 <!--                                session-->
-<!--                                <input type="hidden" name="memberId" th:value="${session.member.id}">-->
-                                <input type="hidden" name="memberId" th:value="${param.memberId}">
+                                <input type="hidden" name="memberId" th:value="${session.member.id}">
+<!--                                <input type="hidden" name="memberId" th:value="${param.memberId}">-->
                                 <fieldset>
                                     <legend>제목 등록하기</legend>
                                     <div class="jkTxInput">
