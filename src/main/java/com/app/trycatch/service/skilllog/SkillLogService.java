@@ -127,8 +127,6 @@ public class SkillLogService {
         criteria.setHasMore(skillLogs.size() > criteria.getRowCount());
         skillLogWithPagingDTO.setCriteria(criteria);
 
-        log.info("{}", skillLogDAO.findTotal(search));
-
         if(criteria.isHasMore()){
             skillLogs.remove(skillLogs.size() - 1);
         }
