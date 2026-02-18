@@ -234,7 +234,7 @@ photoInput.addEventListener("change", (e) => {
         tempPhotoInputs = [];
     })
 
-    files.forEach((file, i) => {
+    for (const file of files) {
         // 이미지 파일인지 확인
         if (!file.type.startsWith("image/")) {
             alert("이미지 파일만 올릴 수 있습니다.");
@@ -247,7 +247,8 @@ photoInput.addEventListener("change", (e) => {
             photoInput.value = "";
             return;
         }
-
+    }
+    files.forEach((file, i) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
