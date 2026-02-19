@@ -24,8 +24,8 @@ const reportFirstReasonRadio = document.querySelectorAll(
 );
 
 const reportForm = document["reportForm"];
-const memberId = reportForm.memberId;
-const skillLogId = reportForm.skillLogId;
+const memberId = reportForm.memberId.value;
+const skillLogId = reportForm.skillLogId.value;
 
 // 댓글에 신고버튼
 const commentReportButtons = document.querySelectorAll(
@@ -163,7 +163,7 @@ if (qstnLikeButton) {
         setTimeout(() => {
             qstnLikeButton.classList.toggle("on");
             skillLogLikeService.getCount(
-                {skillLogId: skillLogId.value, memberId: memberId.value},
+                {skillLogId: skillLogId, memberId: memberId},
                 skillLogLikeLayout.showCount
             );
         }, 100);
