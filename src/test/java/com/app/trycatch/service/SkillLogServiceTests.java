@@ -84,7 +84,7 @@ public class SkillLogServiceTests {
 
     @Test
     public void testDetail() {
-        SkillLogDTO skillLogDTO = skillLogService.detail(70L, 4L);
+        SkillLogDTO skillLogDTO = skillLogService.detail(60L, null);
         log.info("{}", skillLogDTO);
     }
 
